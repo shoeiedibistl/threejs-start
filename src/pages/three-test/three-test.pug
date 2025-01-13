@@ -1,0 +1,10 @@
+extends ../../layout/layout
+
+block variables
+  -
+    const pageName = 'three-test'
+    const pageTitle = 'three-test'
+
+block content
+  main(data-barba='container', data-barba-namespace=pageName)
+    +three-test-content

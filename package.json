@@ -73,6 +73,8 @@
     "scroll-lock": "^2.1.5",
     "slide-element": "^2.3.1",
     "swiper": "^11.1.9",
+    "three": "^0.172.0",
+    "three-stdlib": "^2.35.7",
     "tippy.js": "^6.3.7",
     "tom-select": "^2.3.1",
     "validator": "^13.12.0",

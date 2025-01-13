@@ -2,6 +2,11 @@ a {
   color: black;
 }
 
+html {
+  width: 100vw;
+  overflow: hidden auto;
+}
+
 body {
   &.overflow-scroll {
     overflow: hidden;
