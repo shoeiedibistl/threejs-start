@@ -26,8 +26,9 @@ export function three() {
   pointLight.position.set(0.05, 0, 1.25)
 
   // Настройка источника света
-  const light = new THREE.DirectionalLight(0xff0000, 1)
-  light.position.set(5, 10, 5)
+  // const light = new THREE.DirectionalLight(0xff0000, 1)
+  const light = new THREE.DirectionalLight(0x888888, 1)
+  light.position.set(5, 15, 5)
   light.castShadow = true // Включить тени от источника света
   scene.add(light)
 
@@ -46,7 +47,8 @@ export function three() {
   // Создаем большую плоскость для подложки
   const planeGeometry = new THREE.PlaneGeometry(100, 100)
   const planeMaterial = new THREE.MeshStandardMaterial({
-    color: 0x555555,
+    // color: 0x555555,
+    color: 0x111111,
     roughness: 0.5,
     metalness: 0.3
   }) // Используем MeshStandardMaterial
@@ -97,7 +99,7 @@ export function three() {
       const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize)
       const material = new THREE.MeshStandardMaterial({
         // color: Math.random() * 0xffffff,
-        color: 0x888888,
+        color: 0x333333,
         roughness: 0.5,
         metalness: 0.8
       })
@@ -176,7 +178,8 @@ export function three() {
 
     // Также обновляем положение камеры
     camera.position.x = mouseX / 2
-    camera.position.z = mouseY / 2
+    //camera.position.z = mouseY / 2
+    camera.position.z = mouseY / 5
 
     ballTargetPosition.x = mouseX * 5
     ballTargetPosition.z = -mouseY * 1.5

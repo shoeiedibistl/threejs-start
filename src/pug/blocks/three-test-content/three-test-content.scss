@@ -9,4 +9,9 @@
     position: absolute;
     inset: 0;
   }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+  }
 }
