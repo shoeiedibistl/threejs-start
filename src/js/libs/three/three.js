@@ -182,44 +182,45 @@ export function three() {
     ballTargetPosition.z = -mouseY * 1.5
   })
 
-  //   // Добавляем шум через шейдер
-  //   let u_time = 0 // Переменная времени
-  //   const noiseGeometry = new THREE.PlaneGeometry(100, 100)
+  // Добавляем шум через шейдер
+  let u_time = 0 // Переменная времени
+  const noiseGeometry = new THREE.PlaneGeometry(100, 100)
 
-  //   // Вершинный шейдер
-  //   const noiseVertexShader = `
-  //     varying vec2 v_uv;
+  // Вершинный шейдер
+  const noiseVertexShader = `
+      varying vec2 v_uv;
 
-  //     void main() {
-  //       v_uv = uv; // Передаем UV-координаты во фрагментный шейдер
-  //       gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-  //     }
-  //   `
+      void main() {
+        v_uv = uv; // Передаем UV-координаты во фрагментный шейдер
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `
 
-  //   // Фрагментный шейдер
-  //   const noiseFragmentShader = `
-  //     uniform float u_time;
-  //     varying vec2 v_uv;
+  // Фрагментный шейдер
+  const noiseFragmentShader = `
+      uniform float u_time;
+      varying vec2 v_uv;
 
-  //     void main() {
-  //       float noise = fract(sin(dot(v_uv * 10.0 + u_time * 0.5, vec2(12.9898, 78.233))) * 43758.5453);
-  //       gl_FragColor = vec4(vec3(noise), 0.1); // Уровень прозрачности шума
-  //     }
-  //   `
+      void main() {
+        float noise = fract(sin(dot(v_uv * 10.0 + u_time * 0.5, vec2(12.9898, 78.233))) * 43758.5453);
+        gl_FragColor = vec4(vec3(noise), 0.075); // Уровень прозрачности шума
+      }
+    `
 
-  //   const noiseMaterial = new THREE.ShaderMaterial({
-  //     transparent: true,
-  //     uniforms: {
-  //       u_time: { value: u_time } // Передаем u_time
-  //     },
-  //     vertexShader: noiseVertexShader,
-  //     fragmentShader: noiseFragmentShader
-  //   })
+  const noiseMaterial = new THREE.ShaderMaterial({
+    transparent: true,
+    uniforms: {
+      u_time: { value: u_time } // Передаем u_time
+    },
+    vertexShader: noiseVertexShader,
+    fragmentShader: noiseFragmentShader
+  })
 
-  //   const noiseMesh = new THREE.Mesh(noiseGeometry, noiseMaterial)
-  //   noiseMesh.rotation.x = -Math.PI / 2 // Поворачиваем плоскость шума
-  //   noiseMesh.position.z = -1 // Позиционируем перед камерой
-  //   scene.add(noiseMesh)
+  const noiseMesh = new THREE.Mesh(noiseGeometry, noiseMaterial)
+  noiseMesh.rotation.x = -Math.PI / 2 // Поворачиваем плоскость шума
+  noiseMesh.position.z = 0 // Позиционируем перед камерой
+  noiseMesh.position.y = 3 // Позиционируем перед камерой
+  scene.add(noiseMesh)
 
   // Устанавливаем позицию камеры ближе к кубам
   camera.position.y = 4 // Уменьшаем y, чтобы смотреть вниз на кубы
@@ -231,11 +232,11 @@ export function three() {
     sphere.position.lerp(sphereTargetPosition, 0.003)
     ball.position.lerp(ballTargetPosition, 0.01)
 
-    // // Обновляем значение времени
-    // u_time += 0.1 // Увеличиваем время для анимации
+    // Обновляем значение времени
+    u_time += 0.1 // Увеличиваем время для анимации
 
-    // // Обновляем значение uniform в материале
-    // noiseMaterial.uniforms.u_time.value = u_time
+    // Обновляем значение uniform в материале
+    noiseMaterial.uniforms.u_time.value = u_time
 
     // Перемещение кубов вперед вдоль оси Z
     cubes.forEach(cube => {
