@@ -1,3 +1,4 @@
+import * as CANNON from 'cannon-es'
 import * as THREE from 'three'
 
 // Устанавливаем количество кубов на экране
@@ -57,28 +58,6 @@ export function three() {
   plane.rotation.x = -Math.PI / 2 // Поворачиваем плоскость, чтобы она была горизонтальной
   plane.receiveShadow = true // Плоскость будет принимать тени
   scene.add(plane)
-
-  //   // Создайте кубы
-  //   const cubes = []
-  //   const cubeCount = 100 // Количество кубиков
-  //   for (let i = 0; i < cubeCount; i++) {
-  //     const geometry = new THREE.BoxGeometry(1, 1, 1)
-  //     const material = new THREE.MeshStandardMaterial({
-  //       color: Math.random() * 0xffffff,
-  //       roughness: 0.5,
-  //       metalness: 0.8
-  //     })
-
-  //     const cube = new THREE.Mesh(geometry, material)
-  //     cube.position.x = (Math.random() - 0.5) * 40
-  //     cube.position.z = (Math.random() - 0.5) * 40
-  //     cube.position.y = 0.5
-  //     cube.castShadow = true // Кубики будут кастить тени
-  //     cube.receiveShadow = true // Кубики будут принимать тени от света
-
-  //     scene.add(cube)
-  //     cubes.push(cube)
-  //   }
 
   // Размер куба и отступ
   const cubeSize = 1 // Размер куба
